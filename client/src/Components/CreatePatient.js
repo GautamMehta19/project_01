@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 function CreatePatient() {
 
-    // const history = useNavigate()
+    const history = useNavigate()
 
     const [user, setUser] = useState({
         UHID: "",
@@ -20,7 +20,7 @@ function CreatePatient() {
         mobile: '',
         email: '',
         dob: '',
-        visitedDay : '',
+        visitedDay : 'Monday',
         investigation : '',
         visitedDate : ''
     })
@@ -35,15 +35,17 @@ function CreatePatient() {
 
 
     const handleSubmit = (e) => {
-        // e.preventDefault()
         axios.post("http://localhost:3000/create", {
             ...user
         })
-            .then(res => console.log(res.data))
+            .then(res => {
+                console.log(res.data)
+                history(`/updateVisit/${res.data.data._id}`)
+            })
             // .catch(err => console.log(err))
             .catch(err => console.log(err.response.data.message))
     }
-    console.log(user)
+    // console.log(user)
 
     return (
         <div className="form">
@@ -136,8 +138,8 @@ function CreatePatient() {
                     <label>investigation</label>
                     <input name="investigation" type="text" value={user.investigation} onChange={(e) => handleInputChange(e)} placeholder="investigation" />
                     
-                    <label>visitedDate</label>
-                    <input name="visitedDate" type="date" value={user.visitedDate} onChange={(e) => handleInputChange(e)} placeholder="visitedDate" />
+                    {/* <label>visitedDate</label>
+                    <input name="visitedDate" type="date" value={user.visitedDate} onChange={(e) => handleInputChange(e)} placeholder="visitedDate" /> */}
                 </div>
 
             </div>
