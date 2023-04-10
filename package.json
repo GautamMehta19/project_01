@@ -6,6 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GautamMehta19/project_01.git"
+  },
   "author": "G...",
   "license": "ISC",
   "dependencies": {
