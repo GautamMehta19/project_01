@@ -16,16 +16,13 @@ app.use(express.json())
 //     .catch((err) => console.log(err))
 
 
-async function connectToMongoDB() {
+let connectToMongoDB = async function () {
     try {
         await mongoose.connect(process.env.MONGODB_CLUSTER, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
         console.log('Connected to MongoDB');
-
-        // Perform any database operations here...
-
     } catch (err) {
         console.error('Error connecting to MongoDB', err);
     } 
